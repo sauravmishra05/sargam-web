@@ -1,23 +1,23 @@
 {
-  "tag_name": "v13.6.4",
-  "version_name": "13.6.4",
-  "version_code": 157,
-  "description": "Sargam 13.6.4 Release\n- Public decoupled updater integration\n- General stability and performance improvements",
-  "release_date": "2026-09-22T20:00:00Z",
+  "tag_name": "v13.6.3",
+  "version_name": "13.6.3",
+  "version_code": 156,
+  "description": "Sargam 13.6.3 Release\n- Production release\n- General stability and performance improvements",
+  "release_date": "2026-09-22T14:45:35Z",
   "assets": [
     {
       "name": "app-universal-release.apk",
       "variant": "foss",
       "architecture": "universal",
-      "download_url": "https://sauravmishra05.github.io/sargam-web/releases/v13.6.4/app-universal-release.apk",
-      "sha256": ""
+      "download_url": "https://github.com/sauravmishra05/Sargam/releases/download/v13.6.3/app-universal-release.apk",
+      "sha256": "799d5dc85f32a4eb6ae4b4878ad68514d64abd18e54701505eab71bc7e501381"
     },
     {
       "name": "app-universal-with-Google-Cast.apk",
       "variant": "gms",
       "architecture": "universal",
-      "download_url": "https://sauravmishra05.github.io/sargam-web/releases/v13.6.4/app-universal-with-Google-Cast.apk",
-      "sha256": ""
+      "download_url": "https://github.com/sauravmishra05/Sargam/releases/download/v13.6.3/app-universal-with-Google-Cast.apk",
+      "sha256": "2fce13255e9a5dbaf941a9c8f44e8cba16455f4ff4eec1bbbe60959fc52a38ce"
     }
   ]
 }
