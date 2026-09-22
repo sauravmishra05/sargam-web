@@ -172,7 +172,7 @@ const UI = {
       <div class="song-row ${isPlaying ? 'playing' : ''}" data-song-id="${song.id}" onclick="UI.playTrackById('${song.id}')">
         <div class="song-index">${index}</div>
         <div class="song-details">
-          <img class="song-thumb" src="${song.cover}" alt="${this.escapeHtml(song.title)}" onError="this.src='./assets/logo.svg'" />
+          <img class="song-thumb" src="${song.cover}" alt="${this.escapeHtml(song.title)}" onError="this.src='./assets/logo.png'" />
           <div class="song-meta">
             <div class="song-name">${this.escapeHtml(song.title)}</div>
             <div class="song-artist">${this.escapeHtml(song.artist)}</div>
