@@ -1,23 +1,23 @@
 {
-  "tag_name": "v13.6.5",
-  "version_name": "13.6.5",
-  "version_code": 158,
-  "description": "Sargam 13.6.5 Release",
-  "release_date": "2026-09-23T17:00:00Z",
+  "tag_name": "v13.6.6",
+  "version_name": "13.6.6",
+  "version_code": 159,
+  "description": "Sargam 13.6.6 Controlled Updater Test Release",
+  "release_date": "2026-09-24T12:00:00Z",
   "assets": [
     {
       "name": "app-universal-release.apk",
       "variant": "foss",
       "architecture": "universal",
-      "download_url": "https://sargam-dl.sauravmishraa05.workers.dev/download?version=v13.6.5&variant=foss",
-      "sha256": "f1ff2995f672b1c1a00a2439fe096c0aa571a81efe6709f20e8e6ec35fe96e01"
+      "download_url": "https://sargam-dl.sauravmishraa05.workers.dev/download?version=v13.6.6&variant=foss",
+      "sha256": "d4fc26f95a23393d86694e605ad38a0f8c95277c3ccb682c337f6e38d9f09307"
     },
     {
       "name": "app-universal-with-Google-Cast.apk",
       "variant": "gms",
       "architecture": "universal",
-      "download_url": "https://sargam-dl.sauravmishraa05.workers.dev/download?version=v13.6.5&variant=gms",
-      "sha256": "0e079eead682dc096bbb353a889fa326d6efa4c9f6ec22996debd7c4047869d0"
+      "download_url": "https://sargam-dl.sauravmishraa05.workers.dev/download?version=v13.6.6&variant=gms",
+      "sha256": "0b5beafc84cc1a77a564ef323a8a70c8a024bd9211d34a9f1e62213bf7826119"
     }
   ]
 }
