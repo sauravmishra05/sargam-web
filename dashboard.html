@@ -178,7 +178,7 @@
           <span>Total Downloads</span>
           <span>📦</span>
         </div>
-        <div class="card-num" id="stat-total">0</div>
+        <div class="card-num" id="stat-total">...</div>
         <div class="card-subtitle">Combined FOSS & GMS All Versions</div>
       </div>
 
@@ -187,7 +187,7 @@
           <span>FOSS Variant Downloads</span>
           <span class="badge badge-foss">FOSS</span>
         </div>
-        <div class="card-num" id="stat-foss" style="color: #a78bfa;">0</div>
+        <div class="card-num" id="stat-foss" style="color: #a78bfa;">...</div>
         <div class="card-subtitle">Universal Release APK</div>
       </div>
 
@@ -196,7 +196,7 @@
           <span>GMS / Cast Downloads</span>
           <span class="badge badge-gms">Google Cast</span>
         </div>
-        <div class="card-num" id="stat-gms" style="color: #22d3ee;">0</div>
+        <div class="card-num" id="stat-gms" style="color: #22d3ee;">...</div>
         <div class="card-subtitle">Universal Google Cast APK</div>
       </div>
     </div>
@@ -217,17 +217,10 @@
         <tbody id="version-table-body">
           <tr>
             <td><strong>v13.6.5</strong></td>
-            <td><span id="v1365-foss">0</span></td>
-            <td><span id="v1365-gms">0</span></td>
-            <td><strong id="v1365-total">0</strong></td>
+            <td><span id="v1365-foss">...</span></td>
+            <td><span id="v1365-gms">...</span></td>
+            <td><strong id="v1365-total">...</strong></td>
             <td><span class="badge badge-foss">Active Production</span></td>
-          </tr>
-          <tr>
-            <td><strong>v13.6.4</strong></td>
-            <td><span id="v1364-foss">0</span></td>
-            <td><span id="v1364-gms">0</span></td>
-            <td><strong id="v1364-total">0</strong></td>
-            <td><span style="color: var(--text-muted);">Previous Release</span></td>
           </tr>
         </tbody>
       </table>
@@ -246,7 +239,7 @@
           </tr>
         </thead>
         <tbody id="daily-table-body">
-          <!-- Populated by JavaScript -->
+          <tr><td colspan="4" style="color: var(--text-muted); text-align: center;">Loading live stats...</td></tr>
         </tbody>
       </table>
     </div>
@@ -254,30 +247,46 @@
   </div>
 
   <script>
-    function loadStats() {
-      // Load tracked download counts from local & session storage
-      const fossCount = parseInt(localStorage.getItem('sargam_dl_foss') || '12', 10);
-      const gmsCount = parseInt(localStorage.getItem('sargam_dl_gms') || '8', 10);
-      const totalCount = fossCount + gmsCount;
-
-      document.getElementById('stat-total').textContent = totalCount;
-      document.getElementById('stat-foss').textContent = fossCount;
-      document.getElementById('stat-gms').textContent = gmsCount;
-
-      document.getElementById('v1365-foss').textContent = fossCount;
-      document.getElementById('v1365-gms').textContent = gmsCount;
-      document.getElementById('v1365-total').textContent = totalCount;
-
-      const today = new Date().toISOString().split('T')[0];
+    async function loadStats() {
+      const totalEl = document.getElementById('stat-total');
+      const fossEl = document.getElementById('stat-foss');
+      const gmsEl = document.getElementById('stat-gms');
       const dailyTable = document.getElementById('daily-table-body');
-      dailyTable.innerHTML = `
-        <tr>
-          <td>${today} (Today)</td>
-          <td>${fossCount}</td>
-          <td>${gmsCount}</td>
-          <td><strong>${totalCount}</strong></td>
-        </tr>
-      `;
+
+      totalEl.textContent = '...';
+      fossEl.textContent = '...';
+      gmsEl.textContent = '...';
+
+      try {
+        const response = await fetch('https://sargam-dl.sauravmishra05.workers.dev/stats');
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const data = await response.json();
+
+        totalEl.textContent = data.total ?? 0;
+        fossEl.textContent = data.foss ?? 0;
+        gmsEl.textContent = data.gms ?? 0;
+
+        const v1365 = (data.versions && data.versions['v13.6.5']) || { foss: 0, gms: 0, total: 0 };
+        document.getElementById('v1365-foss').textContent = v1365.foss ?? 0;
+        document.getElementById('v1365-gms').textContent = v1365.gms ?? 0;
+        document.getElementById('v1365-total').textContent = v1365.total ?? 0;
+
+        const todayData = data.today || { date: new Date().toISOString().split('T')[0], foss: 0, gms: 0, total: 0 };
+        dailyTable.innerHTML = `
+          <tr>
+            <td>${todayData.date || 'Today'}</td>
+            <td>${todayData.foss ?? 0}</td>
+            <td>${todayData.gms ?? 0}</td>
+            <td><strong>${todayData.total ?? 0}</strong></td>
+          </tr>
+        `;
+      } catch (err) {
+        console.warn('Live Cloudflare Worker stats unavailable:', err);
+        totalEl.textContent = 'Unavailable';
+        fossEl.textContent = 'Unavailable';
+        gmsEl.textContent = 'Unavailable';
+        dailyTable.innerHTML = `<tr><td colspan="4" style="color: var(--text-muted); text-align: center;">Analytics API unavailable (Cloudflare Worker pending authentication)</td></tr>`;
+      }
     }
 
     document.addEventListener('DOMContentLoaded', loadStats);

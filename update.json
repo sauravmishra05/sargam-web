@@ -9,14 +9,14 @@
       "name": "app-universal-release.apk",
       "variant": "foss",
       "architecture": "universal",
-      "download_url": "https://sauravmishra05.github.io/sargam-web/releases/v13.6.5/app-universal-release.apk",
+      "download_url": "https://sargam-dl.sauravmishraa05.workers.dev/download?version=v13.6.5&variant=foss",
       "sha256": "f1ff2995f672b1c1a00a2439fe096c0aa571a81efe6709f20e8e6ec35fe96e01"
     },
     {
       "name": "app-universal-with-Google-Cast.apk",
       "variant": "gms",
       "architecture": "universal",
-      "download_url": "https://sauravmishra05.github.io/sargam-web/releases/v13.6.5/app-universal-with-Google-Cast.apk",
+      "download_url": "https://sargam-dl.sauravmishraa05.workers.dev/download?version=v13.6.5&variant=gms",
       "sha256": "0e079eead682dc096bbb353a889fa326d6efa4c9f6ec22996debd7c4047869d0"
     }
   ]
