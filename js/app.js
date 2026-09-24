@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', async () => {
       localStorage.setItem(key, (current + 1).toString());
 
       // Ping Cloudflare Worker tracking endpoint asynchronously
-      fetch(`https://sargam-dl.sauravmishraa05.workers.dev/download?version=v13.6.5&variant=${variant}`, { mode: 'no-cors' })
+      fetch(`https://sargam-dl.sauravmishraa05.workers.dev/download?version=v13.6.6&variant=${variant}`, { mode: 'no-cors' })
         .catch(err => console.warn('[Sargam Analytics] Worker ping failed:', err));
 
       if (window.gtag) {

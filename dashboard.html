@@ -266,10 +266,10 @@
         fossEl.textContent = data.foss ?? 0;
         gmsEl.textContent = data.gms ?? 0;
 
-        const v1365 = (data.versions && data.versions['v13.6.5']) || { foss: 0, gms: 0, total: 0 };
-        document.getElementById('v1365-foss').textContent = v1365.foss ?? 0;
-        document.getElementById('v1365-gms').textContent = v1365.gms ?? 0;
-        document.getElementById('v1365-total').textContent = v1365.total ?? 0;
+        const v1366 = (data.versions && data.versions['v13.6.6']) || (data.versions && data.versions['v13.6.5']) || { foss: 0, gms: 0, total: 0 };
+        document.getElementById('v1365-foss').textContent = v1366.foss ?? 0;
+        document.getElementById('v1365-gms').textContent = v1366.gms ?? 0;
+        document.getElementById('v1365-total').textContent = v1366.total ?? 0;
 
         const todayData = data.today || { date: new Date().toISOString().split('T')[0], foss: 0, gms: 0, total: 0 };
         dailyTable.innerHTML = `
