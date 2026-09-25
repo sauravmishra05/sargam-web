@@ -6,6 +6,15 @@
 document.addEventListener('DOMContentLoaded', async () => {
   console.log('🎶 Sargam Web initialized with Audius Engine');
 
+  // Register PWA Service Worker
+  if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+      navigator.serviceWorker.register('./sw.js')
+        .then(reg => console.log('🎶 Sargam PWA ServiceWorker registered with scope:', reg.scope))
+        .catch(err => console.warn('Sargam PWA ServiceWorker registration failed:', err));
+    });
+  }
+
   // Track APK download clicks separately for FOSS and GMS variants
   document.querySelectorAll('a[download]').forEach(link => {
     link.addEventListener('click', () => {
